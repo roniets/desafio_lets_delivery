@@ -1,10 +1,15 @@
-import React from 'react';
-import CharactersList from './components/charactersList'
+import Route from './routes.js';
+import NavHeaderBar from './components/navHeaderBar/navHeaderBar'
+import Footer from './components/footer/footer'
+
+import './App.css'
 
 function App() {
   return (
     <div className="App">
-        <CharactersList />
+      <NavHeaderBar />
+      <Route />
+      <Footer />
     </div>
   );
 }

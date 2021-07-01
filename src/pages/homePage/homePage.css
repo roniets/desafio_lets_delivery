@@ -1,0 +1,25 @@
+.container {
+    max-width: 920px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    background: grey;
+}
+
+.home-images {
+    max-width: 500px;
+    height: auto;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.infos {
+    text-align: justify;
+    margin: 30px auto;
+    width: 700px;
+}
+
+.content-buttons {
+    margin: 50px auto;
+}
