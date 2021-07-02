@@ -1,0 +1,1 @@
+export type filterByName = (a: string) => void;

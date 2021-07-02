@@ -1,0 +1,1 @@
+export type lastPage = () => void;

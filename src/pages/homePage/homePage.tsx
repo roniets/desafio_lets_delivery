@@ -1,8 +1,10 @@
-import './homePage.css';
-import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Imagem from '../../assets/img/RickAndMorty.png';
 import Imagem2 from '../../assets/img/RickAndMorty2.png';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import './homePage.css';
+
 
 const HomePage = () => {
     return (

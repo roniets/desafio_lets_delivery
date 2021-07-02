@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
+import { character } from '../../components/typing/character';
+import { info } from '../../components/typing/info';
+import { loading } from '../../components/typing/loading';
+import { error } from '../../components/typing/error';
 import axios from "axios";
 import CharactersList from '../../components/charactersList/charactersList';
 import SearchBar from '../../components/searchBar/searchBar';
+import Spinner from 'react-bootstrap/Spinner';
 
 function mapReturn(response: any) {
     return response.data.results;
@@ -9,24 +14,16 @@ function mapReturn(response: any) {
 
 const CharactersListPage = () => {
 
-    type character = {
-        id: number,
-        name: string,
-        origin: { name: string },
-        species: string,
-        gender: string,
-        status: string,
-        image: string,
-    }
-
     const [characters, setCharacters] = useState<Array<character>>([]);
-    const [info, setInfo] = useState<any>({})
+    const [info, setInfo] = useState<info>({ pages: 0, prev: '', next: ''});
+    const [loading, setLoading] = useState<loading>(false);
+    const [error, setError] = useState<error>(false);
 
     useEffect(() => {
         whichSheet("https://rickandmortyapi.com/api/character");
     }, [])
 
-    function firistPage() {
+    function firstPage() {
         whichSheet("https://rickandmortyapi.com/api/character");
     }
 
@@ -42,27 +39,32 @@ const CharactersListPage = () => {
         whichSheet(info.prev);
     }
 
+    function filterByName(name: string){
+        whichSheet(`https://rickandmortyapi.com/api/character/?name=${name}`)
+    }
+
     function whichSheet(url: string) {
-        /* carregando = true; */
+        setLoading(true)
         axios
             .get(url)
             .then(response => {
                 setCharacters(mapReturn(response));
                 setInfo(response.data.info);
-                /* carregando = false; */
+                setLoading(false)
             })
-            .catch(err => console.error(err));
-    }
-
-    function filterByName(name: string){
-        whichSheet(`https://rickandmortyapi.com/api/character/?name=${name}`)
+            .catch(err => {
+                setLoading(false)
+                setError(true)
+            });
     }
 
     return (
         <div className="container">
             <h1 className="title">Lista de Personagens:</h1>
             <SearchBar filterByName={filterByName} />
-            <CharactersList characters={characters} firistPage={firistPage} lastPage={lastPage} nextPage={nextPage} prevPage={prevPage} prev={info.prev} next={info.next} />
+            {error ? <p>**Ocorreu algum erro no carregamento da lista: verifique se está conectado à internet e se o nome informado na barra de pesquisa corresponde ao nome de um personagem existente no desenho Rick e Morty, e tente novamente.</p>: 
+            loading ? <Spinner animation="border" variant="info" /> : 
+            <CharactersList characters={characters} firstPage={firstPage} lastPage={lastPage} nextPage={nextPage} prevPage={prevPage} prev={Boolean(info.prev)} next={Boolean(info.next)} />}
         </div>
     )
 }

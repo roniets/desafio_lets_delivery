@@ -1,22 +1,14 @@
+import { typeProps } from '../typing/typeProps';
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './charactersList.css';
 
-type character = {
-    id: number,
-    name: string,
-    origin: { name: string },
-    species: string,
-    gender: string,
-    status: string,
-    image: string,
-}
+const CharactersList = (props: typeProps) => {
 
-const CharactersList = (props: { characters: Array<character>, firistPage: any, lastPage: any, prevPage: any, nextPage: any, prev: boolean, next: boolean}) => {
-
-    function getFiristPage() {
-        props.firistPage();
+    function getFirstPage() {
+        props.firstPage();
     }
     
     function getLastPage() {
@@ -34,9 +26,9 @@ const CharactersList = (props: { characters: Array<character>, firistPage: any, 
     return (
         <div>
 
-            <Table striped bordered hover>
+            <Table striped bordered hover borderless responsive>
 
-                <thead>
+                <thead className="text-muted">
                     <tr>
                         <th>Nome:</th>
                         <th>Origem:</th>
@@ -81,7 +73,7 @@ const CharactersList = (props: { characters: Array<character>, firistPage: any, 
             </Table>
 
             <Pagination className="pagination" size="lg">
-                <Pagination.First className="pagination-elements" onClick={getFiristPage} />
+                <Pagination.First className="pagination-elements" onClick={getFirstPage} />
                 {props.prev ? <Pagination.Prev className="pagination-elements" onClick={getPrevPage} /> : <Pagination.Prev disabled onClick={getPrevPage} />}
                 {props.next ? <Pagination.Next className="pagination-elements" onClick={getNextPage} /> : <Pagination.Next disabled onClick={getNextPage} />}
                 <Pagination.Last className="pagination-elements" onClick={getLastPage} />
