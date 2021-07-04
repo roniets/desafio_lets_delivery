@@ -6,7 +6,7 @@
 
 ## Sobre
 
-Aplicação desenvolvida em  desafio para vaga de dev front end junior da Let's Delivery, compondo uma aplicação client-side que consome dados da API de <span lang="en">"Rick And Morty"</span>, retornando uma lista com todos os personagens da animação exibidas em uma tabela com informações sobre cada personagem, sendo possível ainda adicionar personagens a uma lista de favoritos e visualizar essa lista.
+Aplicação desenvolvida em desafio para vaga de dev front end junior da Let's Delivery, compondo uma aplicação client-side que consome dados da API de <span lang="en">"Rick And Morty"</span>, retornando uma lista com todos os personagens da animação exibidas em uma tabela com informações sobre cada personagem, sendo possível ainda adicionar personagens a uma lista de favoritos e visualizar essa lista.
 
 ---
 
