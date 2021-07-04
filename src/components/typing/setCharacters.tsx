@@ -1,0 +1,1 @@
+export type setCharacters = (state: Array<any>) => void;

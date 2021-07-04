@@ -1,10 +1,10 @@
+import { Link } from 'react-router-dom';
 import Imagem from '../../assets/img/RickAndMorty.png';
 import Imagem2 from '../../assets/img/RickAndMorty2.png';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './homePage.css';
-
 
 const HomePage = () => {
     return (
@@ -20,7 +20,7 @@ const HomePage = () => {
 
                 <p className="infos">A série se originou de uma paródia animada em curta-metragem do filme De Volta Para o Futuro criada por Roiland para o festival de cinema Channel 101. A Adult Swim abordou Harmon a respeito de ideias para um programa de televisão, então ele e Roiland desenvolveram o programa com base no curta, substituindo os personagens de Doc com Rick e Marty com Morty.</p>
 
-                <p className="infos">Fonte: <a href="https://pt.wikipedia.org/wiki/Rick_and_Morty" target="_blank">wikipedia</a></p>
+                <p className="infos">Fonte: <a href="https://pt.wikipedia.org/wiki/Rick_and_Morty" target="_blank" rel="noreferrer">wikipedia</a></p>
 
                 <img className="home-images" src={Imagem2} alt="Imagem de ilustrção do desenho Rick e Morty" />
 
@@ -29,8 +29,12 @@ const HomePage = () => {
                 <p className="infos">Aqui você pode encontrar todos os personagens da animação Rick e Morty, obter informações deles como origem, espécie, status atual entre outras, e ainda colocar em sua lista os seus personagens favoritos! Para começar basta clicar em um dos botões abaixo de acordo com o que deseja:</p>
 
                 <div className="content-buttons">
-                    <Button className="button" href="/charactersListPage">Ver Lista de Personagens</Button>
-                    <Button className="button" variant="primary" href="/register">Ver Meus Favoritos</Button>
+                    <Link to="/charactersListPage">
+                        <Button className="button">Ver Lista de Personagens</Button>
+                    </Link>
+                    <Link to="/favoritesListPage">
+                    <Button className="button" variant="primary">Ver Meus Favoritos</Button>
+                    </Link>
                 </div>
 
             </main>
