@@ -6,6 +6,12 @@
 
 .item-home {
     text-transform: uppercase;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.content-dropdown {
+    width: 250px;
 }
 
 .items {
@@ -14,4 +20,10 @@
 
 .items:hover {
     color: #008080 !important;
+}
+
+.items-link {
+ 
+    margin: 20px;
+    justify-content: center;
 }

@@ -2,6 +2,9 @@ import { useContext } from "react";
 import { FavoritesContext } from "../../App";
 import { typeProps } from '../typing/typeProps';
 import { character } from '../typing/character';
+import { list } from '../typing/list';
+import imageFavorite from '../../assets/img/favorite.png'; 
+import imageNoFavorite from '../../assets/img/noFavorite.png'; 
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -48,6 +51,20 @@ const CharactersList = (props: typeProps) => {
         }
     }
 
+    function validationFavoriteStar(id: number) {
+        let validate = [...favorites];
+        if(favorites.length > 0){
+            let validadeFavorite = validate.find((value) => id === value.id);
+            if(validadeFavorite !== undefined) {
+                return <img className="favorite-img" src={imageFavorite} alt="Imagem de estrela dourada de item favoritado" />
+            } else {
+                return <img className="favorite-img" src={imageNoFavorite} alt="Imagem de estrela preta de item não favoritado" />
+            }
+        } else {
+            return <img className="favorite-img" src={imageNoFavorite} alt="Imagem de estrela preta de item não favoritado" />
+        }
+    }
+
     function favorite(addCharacter: character) {
         let newState = [...favorites];
         if(favorites.length === 0) {
@@ -59,12 +76,13 @@ const CharactersList = (props: typeProps) => {
         if(add === undefined) {
             newState.push(addCharacter);
         } else {
-            newState = newState.filter((value) => addCharacter.id != value.id);
+            newState = newState.filter((value) => addCharacter.id !== value.id);
         }
         increment(newState);
     }
 
-    function renderList(list: Array<any>) {
+    function renderList(list: list) {
+        if(list.length > 0) {
         return list.map(character => {
             return (
                 <tr key={character.id}>
@@ -84,14 +102,23 @@ const CharactersList = (props: typeProps) => {
                         {character.status}
                     </td>
                     <td>
-                        <img src={character.image} alt="Foto do personagem"></img>
+                        <img className="characters-img" src={character.image} alt="Foto do personagem"></img>
                     </td>
                     <td onClick={() => favorite(character)}>
-                        sim/não
+                        { 
+                        validationFavoriteStar(character.id) 
+                        }
                     </td>
                 </tr>
             )
         })
+    } else {
+        return (
+            <tr>
+                <td colSpan={7} className="notice">*Sua lista de favoritos está vazia! Para adicionar personagens a sua lista, vá em lista de personagens e clique na estrela no canto à direita do personagem que deseja favoritar.</td>
+            </tr>
+        )
+    }
     }
 
     return (
@@ -119,12 +146,17 @@ const CharactersList = (props: typeProps) => {
 
             </Table>
 
-            {props.location  ? <p>**Esses são todos os seus favoritos.</p> : <Pagination className="pagination" size="lg">
-                <Pagination.First className="pagination-elements" onClick={getFirstPage} />
-                {props.prev ? <Pagination.Prev className="pagination-elements" onClick={getPrevPage} /> : <Pagination.Prev disabled onClick={getPrevPage} />}
-                {props.next ? <Pagination.Next className="pagination-elements" onClick={getNextPage} /> : <Pagination.Next disabled onClick={getNextPage} />}
-                <Pagination.Last className="pagination-elements" onClick={getLastPage} />
-            </Pagination>}
+            {props.location ? <div><hr /> <p className="notice">**Para remover um personagem de sua lista de favoritos, basta clicar na estrela no canto à direita do personagem que deseja remover.</p></div> :
+            <div>
+                <hr />
+                <Pagination className="pagination" size="lg">
+                    <Pagination.First onClick={getFirstPage} />
+                    {props.prev ? <Pagination.Prev onClick={getPrevPage} /> : <Pagination.Prev disabled onClick={getPrevPage} />}
+                    {props.next ? <Pagination.Next onClick={getNextPage} /> : <Pagination.Next disabled onClick={getNextPage} />}
+                    <Pagination.Last onClick={getLastPage} />
+                </Pagination>
+            </div>
+            }
 
         </div>
     );

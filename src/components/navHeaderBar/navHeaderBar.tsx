@@ -4,7 +4,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
-import './navHeaderBar.css'
+import './navHeaderBar.css';
 
 const NavHeaderBar = () => {
     return (
@@ -13,16 +13,16 @@ const NavHeaderBar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="items" id="basic-navbar-nav">
                     <Nav className="mr-auto items">
-                        <Link to="/">
-                           {/*  <Nav.Link className="item-home items"> */}Início{/* </Nav.Link> */}
+                        <Link className="item-home items" to="/">
+                           Início
                         </Link>
-                        <NavDropdown title="Personagens" id="basic-nav-dropdown">
-                            <Link to="/favoritesListPage">
-                                {/* <NavDropdown.Item className="items"> */}Meus Favoritos{/* </NavDropdown.Item> */}
+                        <NavDropdown className="content-dropdown"title="Personagens" id="basic-nav-dropdown">
+                            <Link className="items items-link" to="/favoritesListPage">
+                                Meus Favoritos
                             </Link>
                             <NavDropdown.Divider />
-                            <Link to="/charactersListPage">
-                                {/* <NavDropdown.Item className="items"> */}Lista de Personagens{/* </NavDropdown.Item> */}
+                            <Link className="items items-link" to="/charactersListPage">
+                                Lista de Personagens
                             </Link>
                         </NavDropdown>
                     </Nav>

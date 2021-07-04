@@ -7,6 +7,7 @@ import { info } from '../../components/typing/info';
 import { loading } from '../../components/typing/loading';
 import { error } from '../../components/typing/error';
 import { FavoritesContext } from "../../App";
+import { routePageFavorites } from '../../utils/utils';
 import axios from "axios";
 import CharactersList from '../../components/charactersList/charactersList';
 import SearchBar from '../../components/searchBar/searchBar';
@@ -23,7 +24,7 @@ const CharactersListPage = () => {
     let location = useLocation();
 
     useEffect(() => {
-        if(location.pathname === '/favoritesListPage'){
+        if(location.pathname === routePageFavorites){
             setCharacters(favorites);
             return
         }
@@ -31,42 +32,42 @@ const CharactersListPage = () => {
     }, [])
 
     function firstPage() {
-        if(location.pathname === '/favoritesListPage'){
+        if(location.pathname === routePageFavorites){
             return
         }
         whichSheet("https://rickandmortyapi.com/api/character");
     }
 
     function lastPage() {
-        if(location.pathname === '/favoritesListPage'){
+        if(location.pathname === routePageFavorites){
             return
         }
         whichSheet(`https://rickandmortyapi.com/api/character?page=${info.pages}`);
     }
 
     function nextPage() {
-        if(location.pathname === '/favoritesListPage'){
+        if(location.pathname === routePageFavorites){
             return
         }
         whichSheet(info.next);
     }
 
     function prevPage() {
-        if(location.pathname === '/favoritesListPage'){
+        if(location.pathname === routePageFavorites){
             return
         }
         whichSheet(info.prev);
     }
 
     function filterByName(name: name){
-        if(location.pathname === '/favoritesListPage'){
+        if(location.pathname === routePageFavorites){
             return
         }
         whichSheet(`https://rickandmortyapi.com/api/character/?name=${name}`)
     }
 
     function mapReturn(response: any) {
-        if(location.pathname === '/favoritesListPage') {
+        if(location.pathname === routePageFavorites) {
             return response.data;
         }
         return response.data.results;
@@ -89,12 +90,14 @@ const CharactersListPage = () => {
 
     return (
         <div className="container">
-            <h1 className="title">Lista de Personagens:</h1>
+            {location.pathname === routePageFavorites ? <h1 className="title">Lista de Favoritos:</h1> :
+            <h1 className="title">Lista de Personagens:</h1>}
             <SearchBar filterByName={filterByName} />
             {error ? <p>**Ocorreu algum erro no carregamento da lista: verifique se está conectado à internet e se o nome informado na barra de pesquisa corresponde ao nome de um personagem existente no desenho Rick e Morty, e tente novamente.</p> : 
             loading ? <Spinner animation="border" variant="info" /> :
-            location.pathname === '/favoritesListPage' ? <CharactersList setCharacters={setCharacters} characters={characters} location={Boolean(location.pathname === '/favoritesListPage')} /> : 
-            <CharactersList setCharacters={setCharacters} characters={characters} location={Boolean(location.pathname === '/favoritesListPage')} firstPage={firstPage} lastPage={lastPage} nextPage={nextPage} prevPage={prevPage} prev={Boolean(info.prev)} next={Boolean(info.next)} />}
+            location.pathname === routePageFavorites ? <CharactersList setCharacters={setCharacters} characters={characters} location={Boolean(location.pathname === routePageFavorites)} /> : 
+            <CharactersList setCharacters={setCharacters} characters={characters} location={Boolean(location.pathname === routePageFavorites)} firstPage={firstPage} lastPage={lastPage} nextPage={nextPage} prevPage={prevPage} prev={Boolean(info.prev)} next={Boolean(info.next)} />
+            }
         </div>
     )
 }

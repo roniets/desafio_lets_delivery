@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Imagem from '../../assets/img/RickAndMorty.png';
-import Imagem2 from '../../assets/img/RickAndMorty2.png';
+import Image from '../../assets/img/RickAndMorty.png';
+import Image2 from '../../assets/img/RickAndMorty2.png';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,7 +10,7 @@ const HomePage = () => {
     return (
         <div className="container">
             <header>
-                <img className="home-images" src={Imagem} alt="Imagem com o nome do desenho Rick e Morty" />
+                <img className="home-images" src={Image} alt="Imagem com o nome do desenho Rick e Morty" />
             </header>
 
             <main>
@@ -20,13 +20,13 @@ const HomePage = () => {
 
                 <p className="infos">A série se originou de uma paródia animada em curta-metragem do filme De Volta Para o Futuro criada por Roiland para o festival de cinema Channel 101. A Adult Swim abordou Harmon a respeito de ideias para um programa de televisão, então ele e Roiland desenvolveram o programa com base no curta, substituindo os personagens de Doc com Rick e Marty com Morty.</p>
 
-                <p className="infos">Fonte: <a href="https://pt.wikipedia.org/wiki/Rick_and_Morty" target="_blank" rel="noreferrer">wikipedia</a></p>
+                <p className="infos">Fonte: <a href="https://pt.wikipedia.org/wiki/Rick_and_Morty" target="_blank" rel="noreferrer">wikipedia</a>.</p>
 
-                <img className="home-images" src={Imagem2} alt="Imagem de ilustrção do desenho Rick e Morty" />
+                <img className="home-images" src={Image2} alt="Imagem de ilustrção do desenho Rick e Morty" />
 
                 <h1 className="title">Nessa Aplicação:</h1>
 
-                <p className="infos">Aqui você pode encontrar todos os personagens da animação Rick e Morty, obter informações deles como origem, espécie, status atual entre outras, e ainda colocar em sua lista os seus personagens favoritos! Para começar basta clicar em um dos botões abaixo de acordo com o que deseja:</p>
+                <p className="infos">Aqui você pode encontrar todos os personagens da animação Rick e Morty, obter informações deles como nome, origem, espécie, status atual e gênero, e ainda colocar em sua lista de favoritos os seus personagens preferidos (limitado a um máximo de 20 personagens). Para começar basta clicar em um dos links no menu da barra superior, ou em um dos botões abaixo de acordo com o que deseja:</p>
 
                 <div className="content-buttons">
                     <Link to="/charactersListPage">

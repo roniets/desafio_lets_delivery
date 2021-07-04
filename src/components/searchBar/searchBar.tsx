@@ -15,11 +15,8 @@ const SearchBar = (props: {filterByName: filterByName}) => {
 
     return (
         <div className="container">
-            <InputGroup className="mb-3">
-                <FormControl
-                    placeholder="Escreva o Nome do Personagem"
-                    aria-label="Escreva o Nome do Personagem"
-                    onChange={setValueName} />
+            <InputGroup className="mb-1">
+                <FormControl placeholder="Escreva o Nome do Personagem" aria-label="Escreva o Nome do Personagem" onChange={setValueName} />
                 <InputGroup.Append>
                     <Button id="getName" className="button" onClick={getName} variant="outline-secondary">Pesquisar</Button>
                 </InputGroup.Append>

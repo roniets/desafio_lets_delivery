@@ -1,1 +1,1 @@
-export const pageFavorites = "/favoritesListPage";
+export const routePageFavorites = "/favoritesListPage";
